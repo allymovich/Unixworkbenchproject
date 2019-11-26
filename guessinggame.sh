@@ -15,8 +15,6 @@ done
 read -p "GUESS THE NUMBER OF FILES:    " input
 echo "$input"
 z=`wc -w files.txt|cut -d" " -f 1 `
-while [[ $input -gt $z ]] || [[ $input -lt $z ]]
-do
 if [[ $input -lt $z ]]
 then
 echo -e " TOO SMALL \n TRY AGAIN......"
@@ -26,6 +24,4 @@ echo -e " TOO LARGE \n TRY AGAIN ......"
 else
 echo "CONGRATULATIONS"
 fi
-break
-done
 rm files.txt
