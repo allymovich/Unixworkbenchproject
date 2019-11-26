@@ -5,26 +5,27 @@ var=`ls`
 
 touch files.txt
 rm files.txt
-#while [[ z -lt 34 ]]
-#do
- for files in $var
+for files in $var
  do
   if [[ -f $files ]]
   then
   echo "$files" >> files.txt
   fi
- done
+done 
 read -p "GUESS THE NUMBER OF FILES:    " input
 echo "$input"
-y=`wc -w files.txt|cut -d" " -f 1 `
-z=y-1
-if [[ $input -lt "$z" ]]
+z=`wc -w files.txt|cut -d" " -f 1 `
+while [[ $input -gt $z ]] || [[ $input -lt $z ]]
+do
+if [[ $input -lt $z ]]
 then
-echo " Too small "
-elif [[ $input -eq $z ]]
+echo -e " TOO SMALL \n TRY AGAIN......"
+elif [[ $input -gt $z ]]
 then
-echo " Congratulations "
-else [[ $input -gt "$z" ]]
-echo "too large"
+echo -e " TOO LARGE \n TRY AGAIN ......"
+else
+echo "CONGRATULATIONS"
 fi
+break
+done
 rm files.txt
